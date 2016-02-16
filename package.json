@@ -1,0 +1,28 @@
+{
+  "name": "grunt-and-minify-poc",
+  "version": "0.0.1",
+  "description": "POC or Sample for grunt workflow for minification of CSS, JS files.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eshacker/grunt-and-minify-poc.git"
+  },
+  "keywords": [
+    "POC",
+    "sample",
+    "grunt",
+    "jsuglify",
+    "less",
+    "minify",
+    "example"
+  ],
+  "author": "\"EcmaScript Hacker\"",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eshacker/grunt-and-minify-poc/issues"
+  },
+  "homepage": "https://github.com/eshacker/grunt-and-minify-poc#readme"
+}
