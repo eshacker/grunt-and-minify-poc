@@ -11,13 +11,26 @@ module.exports = function(grunt) {
         src: 'src/js/index.js',
         dest: 'dist/js/index.min.js'
       }
+    },
+    less: {
+      production: {
+        options: {
+          paths: ["dist/css"],
+          compress: true
+        },
+        files: {
+          "dist/css/index.min.css": "src/css/index.less"
+        }
+      }
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  // Load the plugin that provides the "less compilation" task.
+  grunt.loadNpmTasks('grunt-contrib-less');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['uglify', 'less']);
 
 };
