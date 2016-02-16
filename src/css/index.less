@@ -5,15 +5,18 @@ body {
   font-family: sans-serif;
 }
 
+@theColorBlack: #333;
+@thinBorder: thin solid @theColorBlack;
+
 header, footer {
   padding: 1em 0;
   margin-bottom: 2em;
-  border-bottom: thin solid black;
+  border-bottom: @thinBorder;
 }
 
 footer {
   margin-top: 2em;
-  border-top: thin solid black;
+  border-top: @thinBorder;
 }
 
 button{
@@ -25,22 +28,20 @@ button{
 
 ol{
   counter-reset: makes-us-cool;
+  li {
+    list-style: none;
+    counter-increment: makes-us-cool;
+    margin: 1em 0;
+    border-bottom: @thinBorder;
+    &::before {
+      content: counter(makes-us-cool);
+      position: relative;
+      left: -1em;
+      background-color: @theColorBlack;
+      color: white;
+      border-radius: 10% 50% 10% 50%;
+      padding: .5em;
+    }
+  }
 }
 
-ol li {
-  list-style: none;
-  counter-increment: makes-us-cool;
-
-  margin: 1em 0;
-  border-bottom: thin solid black;
-}
-
-ol li::before {
-  content: counter(makes-us-cool);
-  position: relative;
-  left: -1em;
-  background-color: black;
-  color: white;
-  border-radius: 10% 50% 10% 50%;
-  padding: .5em;
-}
