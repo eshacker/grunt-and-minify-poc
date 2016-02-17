@@ -1,0 +1,67 @@
+﻿Grunt workflow POC
+________________
+
+
+
+
+1. Create Project on GitHub
+   1. https://github.com/eshacker/grunt-and-minify-poc
+1. Clone and use node
+   1. git clone git@github.com:eshacker/grunt-and-minify-poc.git && nvm use node
+      1. it clones the repo first.
+      2. it uses nvm to load node.
+      3. nvm is node version manager.
+      4. You probably would require to use https-url version instead of git-url for cloning.
+   1. cd into the directory.
+1. npm init
+2. mkdir src && cd src && mkdir css && mkdir js && touch index.html && cd ..
+3. git add . && git commit -m "Structure of the example application." && git log -n1
+   1. You should see "Structure of the example application." as the last line of the output due to git log -n1
+1. Fill up src/index.html, src/js/index.js, src/css/index.less
+   1. use any data.
+   2. get the app working.
+1. Install grunt via node package manager
+   1. Read http://gruntjs.com/getting-started 
+   2. npm install -g grunt-cli
+   3. verify as follow
+      1. grunt --version should print grunt-cli v0.1.13 where v0.1.13 is variable and might be different for you.
+1. install grunt plugin for uglifying JS.
+   1. https://github.com/gruntjs/grunt-contrib-uglify
+   2. install with 
+      1. npm install grunt-contrib-uglify --save-dev
+   1. Check status by running
+      1. git status
+      2. You should see a change in package.json file and a directory node_modules created in the root of the repo.
+   1. Create a .gitignore file in the root of the directory and add
+      1. on a line
+         1. node_modules/
+   1. Now check git status again, you shouldn’t see node_modules.
+      1. you though will see a .gitignore file.
+   1. Create a Gruntfile.js
+      1. Get the basic configuration from  http://gruntjs.com/getting-started
+      2. update the structure using your head.
+   1. add this to Gruntfile.js 
+      1. grunt.loadNpmTasks('grunt-contrib-uglify');
+   1. git add . && git commit -m “working js uglifier”
+   2. You probably want to
+      1. npm install grunt --save-dev
+   1. Check for output using 
+      1. grunt
+      2. You should see a build/ or dist/ directory in root of repo if everything is going right.
+      3. Otherwise just follow the error.
+1. Convert your CSS files to LESS files
+2. Install grunt contrib less
+   1. https://github.com/gruntjs/grunt-contrib-less
+   2. npm install grunt-contrib-less --save-dev
+   3. add this to Gruntfile.js
+      1. grunt.loadNpmTasks('grunt-contrib-less');
+   1. Make changes as you wish.
+   2. Use compress option.
+1. save changes in git repo.
+2. Minify and copy html pages.
+   1. Install
+      1. npm install grunt-contrib-htmlmin --save-dev
+   1. Update Gruntfile.js
+      1. grunt.loadNpmTasks('grunt-contrib-htmlmin');
+1. Of course you need to add htmlmin and less to the default task list and command grunt.
+2. This POC/sample is complete. Time Taken: 2 hours 40 minutes.
