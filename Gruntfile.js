@@ -3,13 +3,22 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    banner: '/*! <%= pkg.titile || pkg.name %> - v<%= pkg.version %>*/',
+    paths: {
+      project: __dirname,
+      dist: '<%=paths.project%>/dist',
+      src: '<%=paths.project%>/src',
+      doc: '<%=paths.project%>/doc',
+      jsSrc: '<%=paths.src%>/js',
+      jsDest: '<%=paths.dist%>/js'
+    },
     uglify: {
       options: {
         banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
       build: {
-        src: 'src/js/index.js',
-        dest: 'dist/js/index.min.js'
+        src: '<%=paths.jsSrc%>/index.js',
+        dest: '<%=paths.jsDest%>/index.min.js'
       }
     },
     less: {
@@ -33,6 +42,10 @@ module.exports = function(grunt) {
           'dist/index.html': 'src/index.html',     // 'destination': 'source'
         }
       },
+    },
+    jshint: {
+      options:{ jshintrc: true },
+      all: ['<%=paths.jsSrc%>/*.js']
     }
   });
 
@@ -42,8 +55,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   // Load the plugin that provides the "html minification" task.
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify', 'less', 'htmlmin']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'less', 'htmlmin']);
 
 };
